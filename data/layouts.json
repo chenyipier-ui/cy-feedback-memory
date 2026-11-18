@@ -1,0 +1,60 @@
+{
+  "zh": {
+    "core": "核心约定.md",
+    "routes": "路由表.md",
+    "index": "索引.md",
+    "inbox": "收件箱.md",
+    "protocol": "AGENTS.md",
+    "layers": {
+      "general": "通用",
+      "tasks": "任务类型",
+      "subjects": "对象"
+    },
+    "archive": "归档",
+    "branch_file": "经验.md",
+    "log_file": "反馈日志.md",
+    "entries_dir": "条目",
+    "drop": "投放区",
+    "docs_dir": "文档",
+    "maint_log": "维护记录.md"
+  },
+  "en": {
+    "core": "CORE.md",
+    "routes": "ROUTES.md",
+    "index": "INDEX.md",
+    "inbox": "inbox.md",
+    "protocol": "AGENTS.md",
+    "layers": {
+      "general": "general",
+      "tasks": "tasks",
+      "subjects": "subjects"
+    },
+    "archive": "archive",
+    "branch_file": "branch.md",
+    "log_file": "log.md",
+    "entries_dir": "entries",
+    "drop": "drop",
+    "docs_dir": "docs",
+    "maint_log": "MAINTENANCE.md"
+  },
+  "sections": {
+    "standards": [
+      "标准",
+      "Standards"
+    ],
+    "candidates": [
+      "待验证",
+      "可以继续试的想法",
+      "Candidates"
+    ],
+    "reference": [
+      "资料",
+      "Reference"
+    ],
+    "external": [
+      "库外文档",
+      "库外的详细文档",
+      "External"
+    ]
+  }
+}

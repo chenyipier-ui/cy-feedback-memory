@@ -1,0 +1,31 @@
+name: smoke
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  smoke:
+    env:
+      PYTHONUTF8: "1"
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest, macos-latest]
+        python: ["3.8", "3.12"]
+        exclude:
+          - os: macos-latest
+            python: "3.8"
+        include:
+          # The last Python 3.8 build for macOS is available on x64.
+          - os: macos-15-intel
+            python: "3.8"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python tests/regress.py
+      - run: python tests/smoke.py --real-timer
+        if: runner.os != 'macOS'
+      - run: python tests/smoke.py
+        if: runner.os == 'macOS'

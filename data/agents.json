@@ -1,0 +1,345 @@
+{
+ "_说明": [
+  "智能体登记表。kind: block=往全局说明文件里插一段带标记的块；file=在全局规则目录里放一个独立文件；manual=没有可写的全局文件，打印出来让用户粘贴，或用项目级 AGENTS.md。",
+  "status: tested=作者本机实测过；docs=按官方文档写，未在作者本机实测；guess=根据公开信息推测，欢迎提 PR 纠正。",
+  "路径记号：~ 用户目录；{APPSUPPORT} = macOS ~/Library/Application Support、Linux ~/.config、Windows %APPDATA%；{DOCUMENTS} = ~/Documents。",
+  "表里没有的智能体：在库的 fm.config.json 的 custom_agents 里按同样格式加一条即可。",
+  "memory：这个智能体自己的规则/记忆文件，首次汇集（collect）时会把其中我们没写过的内容放进投放区。用 a|b 表示按顺序取第一个存在的（新旧版本路径不同时用）。"
+ ],
+ "agents": [
+  {
+   "id": "claude-code",
+   "name": "Claude Code（命令行/桌面端/IDE 插件）",
+   "kind": "block",
+   "path": "~/.claude/CLAUDE.md",
+   "detect": [
+    "~/.claude"
+   ],
+   "status": "tested",
+   "harvest": "claude",
+   "headless": "claude -p --permission-mode acceptEdits --allowedTools \"Bash(python3:*)\" {prompt}",
+   "memory": [
+    "~/.claude/CLAUDE.md",
+    "~/.claude/projects/*/memory/*.md"
+   ]
+  },
+  {
+   "id": "codex",
+   "name": "OpenAI Codex（命令行/桌面端/IDE 插件）",
+   "kind": "block",
+   "path": "~/.codex/AGENTS.md",
+   "detect": [
+    "~/.codex"
+   ],
+   "status": "tested",
+   "harvest": "codex",
+   "headless": "codex exec --full-auto {prompt}",
+   "note": "写入与对话采集已实测；汇集只读 memories/memory_summary.md（精华），明细和原始记忆由对话采集覆盖",
+   "memory": [
+    "~/.codex/AGENTS.md",
+    "~/.codex/memories_v2/memory_summary.md|~/.codex/memories/memory_summary.md|~/.codex/memories/MEMORY.md"
+   ]
+  },
+  {
+   "id": "gemini-cli",
+   "name": "Gemini CLI / Google Antigravity",
+   "kind": "block",
+   "path": "~/.gemini/GEMINI.md",
+   "detect": [
+    "~/.gemini"
+   ],
+   "status": "docs",
+   "harvest": "gemini",
+   "headless": "gemini --yolo -p {prompt}",
+   "memory": [
+    "~/.gemini/GEMINI.md"
+   ]
+  },
+  {
+   "id": "qwen-code",
+   "name": "Qwen Code",
+   "kind": "block",
+   "path": "~/.qwen/QWEN.md",
+   "detect": [
+    "~/.qwen"
+   ],
+   "status": "docs",
+   "harvest": "qwen",
+   "headless": "qwen --yolo -p {prompt}",
+   "memory": [
+    "~/.qwen/QWEN.md"
+   ]
+  },
+  {
+   "id": "opencode",
+   "name": "OpenCode",
+   "kind": "block",
+   "path": "~/.config/opencode/AGENTS.md",
+   "detect": [
+    "~/.config/opencode"
+   ],
+   "status": "docs",
+   "harvest": null,
+   "headless": "opencode run {prompt}",
+   "memory": [
+    "~/.config/opencode/AGENTS.md"
+   ]
+  },
+  {
+   "id": "amp",
+   "name": "Amp",
+   "kind": "block",
+   "path": "~/.config/amp/AGENTS.md",
+   "detect": [
+    "~/.config/amp"
+   ],
+   "status": "guess",
+   "harvest": null,
+   "headless": "amp -x {prompt}",
+   "memory": [
+    "~/.config/amp/AGENTS.md"
+   ]
+  },
+  {
+   "id": "factory-droid",
+   "name": "Factory Droid",
+   "kind": "block",
+   "path": "~/.factory/AGENTS.md",
+   "detect": [
+    "~/.factory"
+   ],
+   "status": "guess",
+   "harvest": null,
+   "headless": "droid exec {prompt}",
+   "memory": [
+    "~/.factory/AGENTS.md"
+   ]
+  },
+  {
+   "id": "copilot-cli",
+   "name": "GitHub Copilot CLI",
+   "kind": "block",
+   "path": "~/.copilot/copilot-instructions.md",
+   "detect": [
+    "~/.copilot"
+   ],
+   "status": "guess",
+   "harvest": null,
+   "headless": null,
+   "memory": [
+    "~/.copilot/copilot-instructions.md"
+   ]
+  },
+  {
+   "id": "codebuddy",
+   "name": "CodeBuddy / WorkBuddy",
+   "kind": "block",
+   "path": "~/.codebuddy/CODEBUDDY.md",
+   "detect": [
+    "~/.codebuddy"
+   ],
+   "status": "guess",
+   "harvest": null,
+   "headless": null,
+   "memory": [
+    "~/.codebuddy/CODEBUDDY.md"
+   ]
+  },
+  {
+   "id": "windsurf",
+   "name": "Windsurf",
+   "kind": "block",
+   "path": "~/.codeium/windsurf/memories/global_rules.md",
+   "detect": [
+    "~/.codeium/windsurf"
+   ],
+   "status": "docs",
+   "harvest": null,
+   "headless": null,
+   "memory": [
+    "~/.codeium/windsurf/memories/*.md"
+   ]
+  },
+  {
+   "id": "goose",
+   "name": "Goose",
+   "kind": "block",
+   "path": "~/.config/goose/.goosehints",
+   "detect": [
+    "~/.config/goose"
+   ],
+   "status": "docs",
+   "harvest": null,
+   "headless": "goose run -t {prompt}",
+   "memory": [
+    "~/.config/goose/.goosehints"
+   ]
+  },
+  {
+   "id": "cline",
+   "name": "Cline",
+   "kind": "file",
+   "path": "{DOCUMENTS}/Cline/Rules/cy-feedback-memory.md",
+   "detect": [
+    "{DOCUMENTS}/Cline",
+    "{APPSUPPORT}/Code/User/globalStorage/saoudrizwan.claude-dev"
+   ],
+   "status": "docs",
+   "harvest": "cline",
+   "headless": null,
+   "memory": [
+    "{DOCUMENTS}/Cline/Rules/*.md"
+   ]
+  },
+  {
+   "id": "roo-code",
+   "name": "Roo Code",
+   "kind": "file",
+   "path": "~/.roo/rules/cy-feedback-memory.md",
+   "detect": [
+    "~/.roo",
+    "{APPSUPPORT}/Code/User/globalStorage/rooveterinaryinc.roo-cline"
+   ],
+   "status": "docs",
+   "harvest": "roo",
+   "headless": null,
+   "memory": [
+    "~/.roo/rules/*.md"
+   ]
+  },
+  {
+   "id": "kilo-code",
+   "name": "Kilo Code",
+   "kind": "file",
+   "path": "~/.kilocode/rules/cy-feedback-memory.md",
+   "detect": [
+    "~/.kilocode",
+    "{APPSUPPORT}/Code/User/globalStorage/kilocode.kilo-code"
+   ],
+   "status": "guess",
+   "harvest": "kilo",
+   "headless": null,
+   "memory": [
+    "~/.kilocode/rules/*.md"
+   ]
+  },
+  {
+   "id": "kiro",
+   "name": "Kiro",
+   "kind": "file",
+   "path": "~/.kiro/steering/cy-feedback-memory.md",
+   "detect": [
+    "~/.kiro"
+   ],
+   "status": "docs",
+   "header": "---\ninclusion: always\n---\n",
+   "harvest": null,
+   "headless": null,
+   "memory": [
+    "~/.kiro/steering/*.md"
+   ]
+  },
+  {
+   "id": "continue",
+   "name": "Continue",
+   "kind": "file",
+   "path": "~/.continue/rules/cy-feedback-memory.md",
+   "detect": [
+    "~/.continue"
+   ],
+   "status": "guess",
+   "harvest": "continue",
+   "headless": null,
+   "memory": [
+    "~/.continue/rules/*.md"
+   ]
+  },
+  {
+   "id": "github-copilot-vscode",
+   "name": "GitHub Copilot（VS Code）",
+   "kind": "file",
+   "path": "{APPSUPPORT}/Code/User/prompts/cy-feedback-memory.instructions.md",
+   "detect": [
+    "{APPSUPPORT}/Code/User/prompts"
+   ],
+   "status": "guess",
+   "header": "---\napplyTo: \"**\"\n---\n",
+   "harvest": null,
+   "headless": null,
+   "memory": [
+    "{APPSUPPORT}/Code/User/prompts/*.instructions.md"
+   ]
+  },
+  {
+   "id": "aider",
+   "name": "Aider",
+   "kind": "file",
+   "path": "~/.cy-feedback-memory/aider-conventions.md",
+   "detect": [
+    "~/.aider.conf.yml"
+   ],
+   "status": "docs",
+   "harvest": "aider",
+   "headless": null,
+   "note": "还需在 ~/.aider.conf.yml 加一行 read: ~/.cy-feedback-memory/aider-conventions.md",
+   "memory": [
+    "~/.aider.conf.yml"
+   ]
+  },
+  {
+   "id": "cursor",
+   "name": "Cursor",
+   "kind": "manual",
+   "path": null,
+   "detect": [
+    "~/.cursor"
+   ],
+   "status": "docs",
+   "harvest": null,
+   "headless": null,
+   "note": "全局 User Rules 存在应用设置里：把 export 的内容粘进 设置→Rules；或用 sync --project 写项目级 AGENTS.md",
+   "memory": []
+  },
+  {
+   "id": "trae",
+   "name": "Trae",
+   "kind": "manual",
+   "path": null,
+   "detect": [
+    "~/.trae",
+    "~/.trae-cn"
+   ],
+   "status": "guess",
+   "harvest": null,
+   "headless": null,
+   "note": "粘进用户规则，或写项目级规则文件",
+   "memory": []
+  },
+  {
+   "id": "zed",
+   "name": "Zed",
+   "kind": "manual",
+   "path": null,
+   "detect": [
+    "~/.config/zed"
+   ],
+   "status": "docs",
+   "harvest": null,
+   "headless": null,
+   "note": "Zed 读取项目根目录的 AGENTS.md / .rules；全局用 Rules Library 粘贴",
+   "memory": []
+  },
+  {
+   "id": "chat-apps",
+   "name": "ChatGPT / Claude.ai / Gemini 网页或桌面聊天",
+   "kind": "manual",
+   "path": null,
+   "detect": [],
+   "status": "docs",
+   "harvest": null,
+   "headless": null,
+   "note": "不能读本地文件：用 export 生成一段文字，粘进自定义指令或 Projects 说明",
+   "memory": []
+  }
+ ]
+}
